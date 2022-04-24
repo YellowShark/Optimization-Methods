@@ -19,6 +19,7 @@ fun main() {
                 println("Деление на ноль! Решение не было получено.")
                 return@solve
             }
+            println("Решение получено!")
             println("x* = $solution, f(x*) = ${f.round()}, df(x*) = ${df.round()}")
         }
     }
