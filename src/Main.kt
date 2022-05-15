@@ -1,27 +1,11 @@
-import java.util.*
 import kotlin.math.abs
-import kotlin.math.cos
 import kotlin.math.pow
-import kotlin.math.sin
+import kotlin.math.sqrt
+
 
 fun main() {
-    val scanner = Scanner(System.`in`)
-    println("Введите а0:")
-    val a0 = scanner.nextFloat()
-    println("Введите b0:")
-    val b0 = scanner.nextFloat()
-    println("Введите eps:")
-    val eps = scanner.nextFloat()
-
-    ChordMethod(a0, b0, eps).run {
-        solve { solution, f, df ->
-            if (solution == null) {
-                println("Деление на ноль! Решение не было получено.")
-                return@solve
-            }
-            println("Решение получено!")
-            println("x* = $solution, f(x*) = ${f.round()}, df(x*) = ${df.round()}")
-        }
+    PowellMethod(eps = 0.001f).run {
+        solve()
     }
 }
 
