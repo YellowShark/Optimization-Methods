@@ -25,7 +25,7 @@ class PowellMethod(private val eps: Float = 0.001f) {
             k++
             solved = powellMethod(k, eps, y, x, q)
         }
-        println("Failure! Answer is not found.")
+        println("Failure! Answer is not found.\n${x.last()}")
     }
 
     private fun powellMethod(
@@ -42,7 +42,7 @@ class PowellMethod(private val eps: Float = 0.001f) {
         } while (i != N + 1)
         if (y[N + 1].equals2(y[1])) {
             println("y[${N + 1}] = y[1]")
-            println("Solved! Answer is x* = ${y[N + 1].toString()}")
+            println("Solved! Answer is x* = ${y[N + 1].toString()}\n$k iterations")
             return true
         }
         x[k + 1] = y[N + 1]
@@ -55,7 +55,7 @@ class PowellMethod(private val eps: Float = 0.001f) {
     }
 
     private fun f(x: Pair<Float, Float>) =
-        2 * x.first.pow(2) + x.second.pow(2) + x.first * x.second
+        (x.first - 1.5f).pow(3) + (x.second + 2.5f).pow(3)
 
     private fun calculateY(i: Int, q: Array<Pair<Float, Float>>, y: Array<Pair<Float, Float>?>): Pair<Float, Float> {
         val alpha = computeAlpha(y[i]!!, q[i])
@@ -72,11 +72,11 @@ class PowellMethod(private val eps: Float = 0.001f) {
         val a0 = -10
         val b0 = 10
         val n = b0 - a0 - 1
-        val x = arrayOfNulls<Float>(n)
-        val funs = arrayOfNulls<Float>(n)
+        val x = arrayOfNulls<Float>(n * 100)
+        val funs = arrayOfNulls<Float>(n * 100)
 
-        repeat(n - 1) { i ->
-            val xs = a0.toFloat() + (i + 1).toFloat() * ((b0 - a0).toFloat() / (n + 1).toFloat())
+        repeat(n * 100 - 1) { i ->
+            val xs = a0.toFloat() + (i).toFloat() * ((b0 - a0).toFloat() / ((n).toFloat() * 100))
             x[i] = xs
             funs[i] = f(x[i]!!)
         }
